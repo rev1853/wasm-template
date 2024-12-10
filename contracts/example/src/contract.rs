@@ -17,3 +17,27 @@ pub fn instantiate(
     return Ok(Response::new())
 }
 
+#[cw_serde]
+pub enum ExecuteMsg {
+    Test {}
+}
+
+#[cfg_attr(not(feature = "library"), entry_point)]
+pub fn execute(
+    _deps: DepsMut,
+    _env: Env,
+    _info: MessageInfo,
+    _msg: ExecuteMsg
+) -> Result<Response, StdError> {
+    return Ok(Response::new())
+}
+
+#[cfg_attr(not(feature = "library"), entry_point)]
+pub fn migrate(
+    _deps: DepsMut,
+    _env: Env,
+    _msg: ExecuteMsg
+) -> Result<Response, StdError> {
+    return Ok(Response::new())
+}
+

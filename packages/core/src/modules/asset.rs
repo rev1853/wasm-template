@@ -1,9 +1,9 @@
 use std::ops::{Add, Div, Mul, Sub};
 use std::str::FromStr;
 use cosmwasm_schema::cw_serde;
-use cosmwasm_std::{Addr, BankMsg, Coin, coin, CosmosMsg, Decimal, MessageInfo, Response, to_binary, Uint128, WasmMsg};
-use cw20::{Cw20Coin, Cw20ExecuteMsg, Denom};
-use crate::error::{ContractError, ContractResult};
+use cosmwasm_std::{Addr, Coin, coin, Decimal, Uint128};
+use cw20::{Cw20Coin, Denom};
+
 use crate::modules::decimal::DecimalExt;
 
 #[cw_serde]
@@ -34,7 +34,7 @@ impl Asset {
         }
     }
 
-    pub fn spendable(mut self, is_classic: bool) -> Self {
+    pub fn spendable(self, is_classic: bool) -> Self {
         return if is_classic && !self.is_cw20() {
             self.clone().multiply_decimal(&Decimal::from_str("0.995").unwrap())
         } else {
