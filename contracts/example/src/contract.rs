@@ -1,10 +1,7 @@
-use cosmwasm_schema::cw_serde;
 #[cfg(not(feature = "library"))]
 use cosmwasm_std::entry_point;
 use cosmwasm_std::{DepsMut, Env, MessageInfo, Response, StdError};
-
-#[cw_serde]
-pub struct InstantiateParams {}
+use crate::msg::{ExecuteMsg, InstantiateParams, QueryMsg};
 
 #[cfg_attr(not(feature = "library"), entry_point)]
 pub fn instantiate(
@@ -15,11 +12,6 @@ pub fn instantiate(
 ) -> Result<Response, StdError> {
 
     return Ok(Response::new())
-}
-
-#[cw_serde]
-pub enum ExecuteMsg {
-    Test {}
 }
 
 #[cfg_attr(not(feature = "library"), entry_point)]
@@ -36,7 +28,7 @@ pub fn execute(
 pub fn migrate(
     _deps: DepsMut,
     _env: Env,
-    _msg: ExecuteMsg
+    _msg: QueryMsg
 ) -> Result<Response, StdError> {
     return Ok(Response::new())
 }
